@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEngine.TestRunner", "UnityEngine.TestRunner.csproj", "{d0754f9e-4e7a-dc29-17ee-3011d2d5cf2e}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{e2b09e5b-ae37-555a-2575-cbb99413ed9e}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Mathematics", "Unity.Mathematics.csproj", "{5a7b3e31-c420-de03-62a5-352ebe05c6bb}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.2D.Animation.Triangle.Runtime", "Unity.2D.Animation.Triangle.Runtime.csproj", "{590872e9-257e-8ae4-0d5d-1dc04b91614f}"
@@ -24,8 +26,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.2D.Common.Runtime", "Unity.2D.Common.Runtime.csproj", "{a0b2004b-e5fd-343e-1024-2288467e68ce}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.InternalAPIEngineBridge.001", "Unity.InternalAPIEngineBridge.001.csproj", "{ac8aa021-7c73-2e09-2916-aaf10c6ca1de}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{e2b09e5b-ae37-555a-2575-cbb99413ed9e}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEditor.TestRunner", "UnityEditor.TestRunner.csproj", "{834013ee-467c-3272-6eb4-d6062af67844}"
 EndProject
@@ -81,6 +81,10 @@ Global
 		{d0754f9e-4e7a-dc29-17ee-3011d2d5cf2e}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{d0754f9e-4e7a-dc29-17ee-3011d2d5cf2e}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{d0754f9e-4e7a-dc29-17ee-3011d2d5cf2e}.Release|Any CPU.Build.0 = Release|Any CPU
+		{e2b09e5b-ae37-555a-2575-cbb99413ed9e}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{e2b09e5b-ae37-555a-2575-cbb99413ed9e}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{e2b09e5b-ae37-555a-2575-cbb99413ed9e}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{e2b09e5b-ae37-555a-2575-cbb99413ed9e}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5a7b3e31-c420-de03-62a5-352ebe05c6bb}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5a7b3e31-c420-de03-62a5-352ebe05c6bb}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5a7b3e31-c420-de03-62a5-352ebe05c6bb}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -125,10 +129,6 @@ Global
 		{ac8aa021-7c73-2e09-2916-aaf10c6ca1de}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ac8aa021-7c73-2e09-2916-aaf10c6ca1de}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ac8aa021-7c73-2e09-2916-aaf10c6ca1de}.Release|Any CPU.Build.0 = Release|Any CPU
-		{e2b09e5b-ae37-555a-2575-cbb99413ed9e}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{e2b09e5b-ae37-555a-2575-cbb99413ed9e}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{e2b09e5b-ae37-555a-2575-cbb99413ed9e}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{e2b09e5b-ae37-555a-2575-cbb99413ed9e}.Release|Any CPU.Build.0 = Release|Any CPU
 		{834013ee-467c-3272-6eb4-d6062af67844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{834013ee-467c-3272-6eb4-d6062af67844}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{834013ee-467c-3272-6eb4-d6062af67844}.Release|Any CPU.ActiveCfg = Release|Any CPU

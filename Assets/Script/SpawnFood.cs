@@ -13,8 +13,8 @@ public class SpawnFood : MonoBehaviour
     public Transform BorderLeft;
     public Transform BorderRight;
 
-    [SerializeField] private float SpawnRate;
-    [SerializeField] private float SpawnStart;
+    [SerializeField] private float SpawnRate = 3f;
+    [SerializeField] private float SpawnStart = 4f;
     
     void Start()
     {
