@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class Snake : MonoBehaviour
@@ -11,9 +12,15 @@ public class Snake : MonoBehaviour
 
     [SerializeField] private float MoveSpeed = 0.3f;
     
+    private float score = 0; 
+    
+
+    
     private Vector2 direction = Vector2.right;
     private List<Transform> tail = new List<Transform>();
     private bool hasEaten = false;
+    
+    
     
 
     void Start()
@@ -34,13 +41,20 @@ public class Snake : MonoBehaviour
     {
         if (other.tag == "Food")
         {
-            hasEaten = true; 
+            hasEaten = true;
+            score++;
             Destroy(other.gameObject);
+            m_ui.NewScoreText.text = score.ToString();
         }
 
         else
         {
             m_ui.GameOver();
+            if (PlayerPrefs.GetFloat("HighScore") == null || score > PlayerPrefs.GetFloat("HighScore"))
+            {
+                PlayerPrefs.SetFloat("HighScore", score);
+                m_ui.HiScoreText.text = PlayerPrefs.GetFloat("HighScore").ToString();
+            }
         }
     }
 
