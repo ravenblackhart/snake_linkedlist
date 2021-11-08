@@ -515,13 +515,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d260854b8c770a478b18e574a1376d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FoodPrefab: {fileID: 5767857986813817397, guid: 8cd87cc330fef6b4a84fe1fa4870d544, type: 3}
+  Spawnables:
+  - {fileID: 5767857986813817397, guid: 8cd87cc330fef6b4a84fe1fa4870d544, type: 3}
+  - {fileID: 5767857986813817397, guid: a969dcb7b8e49fb4390fa723a1463204, type: 3}
   BorderTop: {fileID: 1032146346}
   BorderBottom: {fileID: 162077099}
   BorderLeft: {fileID: 466676327}
   BorderRight: {fileID: 1725255518}
   SpawnRate: 3
   SpawnStart: 2
+  m_snake: {fileID: 6638280324903630368}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -3731,7 +3734,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SBodyPrefab: {fileID: 1106696924237611843, guid: d9037a5e0e3d86645a726f7076235e67, type: 3}
   m_ui: {fileID: 519420033}
-  MoveSpeed: 0.3
+  MoveSpeed: 0.2
+  score: 0
 --- !u!61 &7901383462897113214
 BoxCollider2D:
   m_ObjectHideFlags: 0

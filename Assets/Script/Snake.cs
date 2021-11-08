@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class Snake : MonoBehaviour
 
     [SerializeField] private float MoveSpeed = 0.3f;
     
-    private float score = 0; 
+    [HideInInspector] public float score = 0; 
     
 
     
@@ -43,6 +44,21 @@ public class Snake : MonoBehaviour
         {
             hasEaten = true;
             score++;
+            Destroy(other.gameObject);
+            m_ui.NewScoreText.text = score.ToString();
+        }
+        
+        else if (other.tag == "Bomb" && tail.Count > 1 )
+        {
+            score--;
+            var chopped= tail.GetRange(tail.Count - (Mathf.RoundToInt(tail.Count / 2) + 1), Mathf.RoundToInt(tail.Count / 2) );
+
+            foreach (var tailComponent in chopped)
+            {
+                Destroy(tailComponent.gameObject);
+            }
+            
+            tail.RemoveRange(tail.Count - (Mathf.RoundToInt(tail.Count / 2) + 1), Mathf.RoundToInt(tail.Count / 2) );
             Destroy(other.gameObject);
             m_ui.NewScoreText.text = score.ToString();
         }
