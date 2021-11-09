@@ -518,6 +518,7 @@ MonoBehaviour:
   Spawnables:
   - {fileID: 5767857986813817397, guid: 8cd87cc330fef6b4a84fe1fa4870d544, type: 3}
   - {fileID: 5767857986813817397, guid: a969dcb7b8e49fb4390fa723a1463204, type: 3}
+  - {fileID: 5767857986813817397, guid: 187d9282c8f584d4295974e7fd0823df, type: 3}
   BorderTop: {fileID: 1032146346}
   BorderBottom: {fileID: 162077099}
   BorderLeft: {fileID: 466676327}
@@ -3734,7 +3735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SBodyPrefab: {fileID: 1106696924237611843, guid: d9037a5e0e3d86645a726f7076235e67, type: 3}
   m_ui: {fileID: 519420033}
-  MoveSpeed: 0.2
+  MoveSpeed: 3
   score: 0
 --- !u!61 &7901383462897113214
 BoxCollider2D:

@@ -26,8 +26,8 @@ public class Spawner : MonoBehaviour
 
     void Spawn()
     {
-        int x = (int) Random.Range(BorderLeft.position.x, BorderRight.position.x);
-        int y = (int) Random.Range(BorderTop.position.y, BorderBottom.position.y);
+        int x = (int) Random.Range(BorderLeft.position.x + 1 , BorderRight.position.x - 1);
+        int y = (int) Random.Range(BorderTop.position.y - 1 , BorderBottom.position.y + 1 );
 
         if (m_snake.score <= 5)
         {

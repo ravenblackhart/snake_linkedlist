@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using TMPro;
+using Script.Support;
 using UnityEngine;
 
 public class Snake : MonoBehaviour
@@ -11,7 +11,8 @@ public class Snake : MonoBehaviour
     public GameObject SBodyPrefab;
     [SerializeField] private UIManager m_ui;
 
-    [SerializeField] private float MoveSpeed = 0.3f;
+    [SerializeField] private float MoveSpeed = 3f;
+    private float timeDelay;
     
     [HideInInspector] public float score = 0; 
     
@@ -23,19 +24,22 @@ public class Snake : MonoBehaviour
     
     
     
+    
 
     void Start()
     {
-        InvokeRepeating("Move", MoveSpeed, MoveSpeed );
+        timeDelay = Time.time + 1/MoveSpeed;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) direction = Vector2.right;
-        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) direction = Vector2.left;
-        else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) direction = Vector2.up;
-        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) direction = Vector2.down;
+        if (timeDelay < Time.time) Move();
+        
+        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && direction != Vector2.left) direction = Vector2.right;
+        else if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && direction != Vector2.right) direction = Vector2.left;
+        else if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && direction != Vector2.down ) direction = Vector2.up;
+        else if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && direction != Vector2.up) direction = Vector2.down;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -48,11 +52,17 @@ public class Snake : MonoBehaviour
             m_ui.NewScoreText.text = score.ToString();
         }
         
+        else if (other.tag == "Boost")
+        {
+            MoveSpeed += 0.5f;
+            Destroy(other.gameObject);
+        }
+        
         else if (other.tag == "Bomb" && tail.Count > 1 )
         {
             score--;
             var chopped= tail.GetRange(tail.Count - (Mathf.RoundToInt(tail.Count / 2) + 1), Mathf.RoundToInt(tail.Count / 2) );
-
+            tail.GetRange(7,2);
             foreach (var tailComponent in chopped)
             {
                 Destroy(tailComponent.gameObject);
@@ -90,9 +100,11 @@ public class Snake : MonoBehaviour
         else if (tail.Count > 0 && !hasEaten)
         {
             tail.Last().position = gapPos;
-            tail.Insert(0, tail.Last());
+            tail.Insert(0,tail.Last());
             tail.RemoveAt(tail.Count - 1);
         }
-        
+
+        timeDelay += 1/MoveSpeed;
+
     }
 }
