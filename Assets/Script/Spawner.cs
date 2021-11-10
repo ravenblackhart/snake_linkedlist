@@ -38,5 +38,6 @@ public class Spawner : MonoBehaviour
         {
             Instantiate(Spawnables[Random.Range(0, Spawnables.Length)], new Vector2(x, y), Quaternion.identity);
         }
+        //
     }
 }

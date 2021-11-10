@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Script.Support;
 using UnityEngine;
 
 public class Snake : MonoBehaviour
@@ -16,15 +15,10 @@ public class Snake : MonoBehaviour
     
     [HideInInspector] public float score = 0; 
     
-
-    
     private Vector2 direction = Vector2.right;
     private List<Transform> tail = new List<Transform>();
+    private LinkedList<Transform> tailbits = new LinkedList<Transform>();
     private bool hasEaten = false;
-    
-    
-    
-    
 
     void Start()
     {
@@ -62,7 +56,7 @@ public class Snake : MonoBehaviour
         {
             score--;
             var chopped= tail.GetRange(tail.Count - (Mathf.RoundToInt(tail.Count / 2) + 1), Mathf.RoundToInt(tail.Count / 2) );
-            tail.GetRange(7,2);
+            tail.GetRange(tail.Count - (Mathf.RoundToInt(tail.Count / 2) + 1), Mathf.RoundToInt(tail.Count / 2) );
             foreach (var tailComponent in chopped)
             {
                 Destroy(tailComponent.gameObject);
@@ -86,25 +80,31 @@ public class Snake : MonoBehaviour
 
     void Move()
     {
-        Vector2 gapPos = transform.position;
+        Vector2 nextPos = transform.position;
         
         transform.Translate(direction);
 
         if (hasEaten)
         {
-            GameObject newSegment = Instantiate(SBodyPrefab, gapPos, Quaternion.identity);
+            GameObject newSegment = Instantiate(SBodyPrefab, nextPos, Quaternion.identity);
             tail.Insert(0, newSegment.transform);
             hasEaten = false;
         }
 
         else if (tail.Count > 0 && !hasEaten)
         {
-            tail.Last().position = gapPos;
-            tail.Insert(0,tail.Last());
-            tail.RemoveAt(tail.Count - 1);
+            // tail.Last().position = gapPos;
+            // tail.Insert(0,tail.Last());
+            // tail.RemoveAt(tail.Count - 1);
+            
+            foreach (var tailSegment in tail)
+            {
+                Vector2 gapPos = tailSegment.position;
+                tailSegment.position = nextPos;
+                nextPos = gapPos;
+            }
         }
 
         timeDelay += 1/MoveSpeed;
-
     }
 }
