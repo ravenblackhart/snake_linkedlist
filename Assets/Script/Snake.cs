@@ -93,10 +93,6 @@ public class Snake : MonoBehaviour
 
         else if (tail.Count > 0 && !hasEaten)
         {
-            // tail.Last().position = gapPos;
-            // tail.Insert(0,tail.Last());
-            // tail.RemoveAt(tail.Count - 1);
-            
             foreach (var tailSegment in tail)
             {
                 Vector2 gapPos = tailSegment.position;
