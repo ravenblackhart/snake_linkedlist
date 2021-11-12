@@ -49,8 +49,7 @@ namespace Script.Custom
             if (next_slinkNode == null) return;
 
             SlinkNode new_slinkNode = new SlinkNode(new_objectData);
-            new_slinkNode.next = next_slinkNode.next;
-            next_slinkNode.next = new_slinkNode;
+            new_slinkNode.next = next_slinkNode;
         }
 
         public void InsertAfter(SlinkNode prev_slinkNode, Component new_objectData)
@@ -61,9 +60,18 @@ namespace Script.Custom
             new_slinkNode.next = prev_slinkNode.next;
             prev_slinkNode.next = new_slinkNode;
         }
-        public void RemoveFirst(){}
+
+        public void RemoveFirst(SlinkNode deleteNode)
+        {
+            if (head == null) return;
+            
+            
+        }
         public void RemoveLast(){}
-        public void RemoveAt(){}
+
+        public void RemoveAt()
+        {
+        }
         
         
         
