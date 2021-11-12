@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using Script.Custom;
+
 
 public class Snake : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class Snake : MonoBehaviour
     
     private Vector2 direction = Vector2.right;
     private LinkedList<Transform> tail = new LinkedList<Transform>();
+    private SlinkList<Transform> tailbits = new SlinkList<Transform>();
     private bool hasEaten = false;
 
     void Start()
