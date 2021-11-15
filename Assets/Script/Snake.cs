@@ -15,6 +15,7 @@ public class Snake : MonoBehaviour
     [SerializeField] private float MoveSpeed = 3f;
     private float timeDelay;
 
+
     [HideInInspector] public float score = 0; 
     
     private Vector2 direction = Vector2.right;
@@ -31,11 +32,12 @@ public class Snake : MonoBehaviour
     { 
         if (timeDelay < Time.time) Move();
 
-       if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && direction != Vector2.left) direction = Vector2.right;
-       else if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && direction != Vector2.right) direction = Vector2.left;
-       else if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && direction != Vector2.down ) direction = Vector2.up;
-       else if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && direction != Vector2.up) direction = Vector2.down;
-       
+        
+        if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && direction != Vector2.down ) direction = Vector2.up;
+        else if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && direction != Vector2.left) direction = Vector2.right;
+        else if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && direction != Vector2.right) direction = Vector2.left;
+        else if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && direction != Vector2.up) direction = Vector2.down;
+
     }
     
     void Move()
@@ -47,17 +49,20 @@ public class Snake : MonoBehaviour
         if (hasEaten)
         {
             GameObject newSegment = Instantiate(SBodyPrefab, nextPos, Quaternion.identity);
-            tail.AddFirst(newSegment.transform);
+            tailbits.AddFirst(newSegment.transform);
             hasEaten = false;
         }
 
-        else if (tail.Count > 0 && !hasEaten)
+        else if (tailbits.getCount() > 0 && !hasEaten)
         {
-            foreach (var tailSegment in tail)
+            var tempHead = tailbits.First;
+
+            while (tempHead != null)
             {
-                Vector2 gapPos = tailSegment.position;
-                tailSegment.position = nextPos;
+                Vector2 gapPos = tempHead.objectData.position;
+                tempHead.objectData.position = nextPos;
                 nextPos = gapPos;
+                tempHead = tempHead.next;
             }
         }
 
@@ -80,15 +85,15 @@ public class Snake : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        else if (other.tag == "Bomb" && tail.Count > 1 )
+        else if (other.tag == "Bomb" && tailbits.getCount() > 1 )
         {
             score--;
-            int newSize = Mathf.RoundToInt(tail.Count / 2);
+            int newSize = Mathf.RoundToInt(tailbits.getCount() / 2);
             while (tail.Count > newSize)
             {
-                Transform xtail = tail.Last();
-                tail.RemoveLast();
-                Destroy(xtail.gameObject);
+                var xtail = tailbits.Last;
+                tailbits.RemoveLast();
+                Destroy(xtail.objectData.gameObject);
                 
             }
             
