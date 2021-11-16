@@ -81,7 +81,7 @@ public class Snake : MonoBehaviour
         
         else if (other.tag == "Boost")
         {
-            MoveSpeed += 0.5f;
+            MoveSpeed += 0.5f; 
             Destroy(other.gameObject);
         }
 
@@ -89,12 +89,14 @@ public class Snake : MonoBehaviour
         {
             score--;
             int newSize = Mathf.RoundToInt(tailbits.getCount() / 2);
-            while (tail.Count > newSize)
+
+            
+            
+            while (tailbits.getCount() > newSize)
             {
-                var xtail = tailbits.Last;
-                tailbits.RemoveLast();
-                Destroy(xtail.objectData.gameObject);
-                
+                GameObject xtail = tailbits.getIndex(tailbits.getCount() - 1).gameObject;
+                tailbits.RemoveAt(tailbits.getCount() - 1);
+                Destroy(xtail);
             }
             
             Destroy(other.gameObject);
