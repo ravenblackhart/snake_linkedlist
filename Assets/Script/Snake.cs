@@ -18,7 +18,9 @@ public class Snake : MonoBehaviour
 
     [HideInInspector] public float score = 0; 
     
-    private Vector2 direction = Vector2.right;
+    private Vector2 setDirection = Vector2.right;
+    private Vector2 moveDirection;
+    
     private LinkedList<Transform> tail = new LinkedList<Transform>();
     private SlinkList<Transform> tailbits = new SlinkList<Transform>();
     private bool hasEaten = false;
@@ -26,6 +28,7 @@ public class Snake : MonoBehaviour
     void Start()
     {
         timeDelay = Time.time + 1/MoveSpeed;
+        moveDirection = setDirection;
     }
     
     void Update()
@@ -33,18 +36,18 @@ public class Snake : MonoBehaviour
         if (timeDelay < Time.time) Move();
 
         
-        if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && direction != Vector2.down ) direction = Vector2.up;
-        else if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && direction != Vector2.left) direction = Vector2.right;
-        else if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && direction != Vector2.right) direction = Vector2.left;
-        else if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && direction != Vector2.up) direction = Vector2.down;
+        if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && moveDirection != Vector2.down ) setDirection = Vector2.up;
+        else if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && moveDirection != Vector2.left) setDirection = Vector2.right;
+        else if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && moveDirection != Vector2.right) setDirection = Vector2.left;
+        else if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && moveDirection != Vector2.up) setDirection = Vector2.down;
 
     }
     
     void Move()
     {
         Vector2 nextPos = transform.position;
-        
-        transform.Translate(direction);
+        moveDirection = setDirection;
+        transform.Translate(moveDirection);
 
         if (hasEaten)
         {
