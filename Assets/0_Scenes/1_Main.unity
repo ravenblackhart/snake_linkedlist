@@ -930,7 +930,7 @@ MonoBehaviour:
   BorderLeft: {fileID: 466676327}
   BorderRight: {fileID: 1725255518}
   SpawnRate: 3
-  SpawnStart: 4
+  SpawnStart: 2
   m_snake: {fileID: 6638280324903630368}
 --- !u!20 &519420031
 Camera:
@@ -4818,7 +4818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SBodyPrefab: {fileID: 1106696924237611843, guid: d9037a5e0e3d86645a726f7076235e67, type: 3}
   m_ui: {fileID: 519420033}
-  MoveSpeed: 3
+  MoveSpeed: 5
   score: 0
 --- !u!61 &7901383462897113214
 BoxCollider2D:
