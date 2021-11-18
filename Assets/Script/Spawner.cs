@@ -12,9 +12,12 @@ public class Spawner : MonoBehaviour
     public Transform BorderRight;
 
     [SerializeField] private float SpawnRate = 3f;
-    [SerializeField] private float SpawnStart = 4f;
+    [SerializeField] private float SpawnStart = 2f;
 
     [SerializeField] private Snake m_snake;
+
+    public Transform[] objectsList;
+    private Vector2 instantiatePos;
 
     void Start()
     {
@@ -27,14 +30,25 @@ public class Spawner : MonoBehaviour
         int x = (int) Random.Range(BorderLeft.position.x + 1 , BorderRight.position.x - 1);
         int y = (int) Random.Range(BorderTop.position.y - 1 , BorderBottom.position.y + 1 );
 
-        if (m_snake.score <= 5)
-        {
-            Instantiate(Spawnables[0], new Vector2(x, y), Quaternion.identity);
-        }
+        instantiatePos = new Vector2(x, y);
 
-        else
+        objectsList = gameObject.GetComponents<Transform>();
+
+        foreach (Transform spawnedObj in objectsList)
         {
-            Instantiate(Spawnables[Random.Range(0, Spawnables.Length)], new Vector2(x, y), Quaternion.identity);
+            if ((Vector2)spawnedObj.transform.localPosition == instantiatePos) return;
+            else
+            {
+                if (m_snake.score <= 5 || GameObject.FindGameObjectsWithTag("Food").Length < 5)
+                {
+                    Instantiate(Spawnables[0], instantiatePos, Quaternion.identity);
+                }
+
+                else
+                {
+                    Instantiate(Spawnables[Random.Range(0, Spawnables.Length)], instantiatePos, Quaternion.identity);
+                }
+            }
         }
         
     }
